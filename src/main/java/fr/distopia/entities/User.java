@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.sql.Array;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,13 +23,21 @@ public class User {
     
     @NotNull
     @Size(min=5,max=30)
-    private String UserName;
+    private String username;
     
     @NotNull
 	@Size(min=5,max=30)
-    private String Password;
-    
+    private String password;
+
     @NotNull
 	@Size(min=5,max=30)
-    private Array SessionList;
+    private String adress;
+
+    @NotNull
+	@Size(min=5,max=30)
+    private String email;
+    
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<SessionList> sessionList;
 }

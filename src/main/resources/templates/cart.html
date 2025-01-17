@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th        = "http://thymeleaf.org"
+	  xmlns:layout    = "http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate = "~{mylayout}" 
+	  xmlns:sec		  ="http://www.thymeleaf.org/extras/spring-security5"
+	  lang="fr">
+
+<head>
+<meta charset="utf-8">
+<title>Mes film</title>		
+</head>
+
+<body>
+	<div layout:fragment="content">		
+		
+		<div class = "container col-md-6 marge">
+			<div class="panel panel-primary" th:if="${nbArt>0}">
+				<div class="panel-heading">List film</div>
+				<div class="panel-body">
+					<table class = "table">
+						<tr>
+							<th>Id</th> <th>Date</th> <th>Movie title</th> <th>Price</th>
+						</tr>
+						<tr th:each="a:${cart}">
+							<td th:text="${a.id}"> </td>
+							<td th:text="${a.date}"> </td>
+							<td th:text="${a.movie}"> </td>
+							<td th:text="${a.price}"> </td>
+							
+							<td> <a class="btn btn-danger" th:href="@{ /dcart (id=${a.id}) }"> Supprimer </a> </td>						
+						</tr>				
+						<tr> 
+							<td></td>
+							<td class = "text-right"> <strong> Montant total : </strong></td>
+							<td  th:text="${total}"></td>
+						</tr>							
+					</table>	
+					
+					<a class="btn btn-primary" th:href="@{ /recap}"> Commander</a>														
+				</div>
+			</div>
+			<div th:if="${nbArt==0}"> PANIER VIDE </div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{mylayout}"
+	lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Récapitulatif</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+	
+		<div class="col-md-4 col-xs-5">
+			<div class="panel panel-default">
+				<div class="panel-heading">Informations de livraison</div>	
+				<div class="panel-body">
+					<div class="form-group">
+				        <label>Pseudo de l'utilisateur : </label>
+				        <label th:text="${user.username}" th:value="${user.username}"> </label>
+				    </div>
+				    <div class="form-group">
+				        <label>Email : </label>
+				        <label th:text="${user.email}" th:value="${user.email}"> </label>
+				    </div>
+				    <div class="form-group">
+				        <label>Adresse : </label>
+				        <label th:text="${user.address}" th:value="${user.address}"> </label>
+				    </div>									
+				</div>							
+			</div>
+		</div>
+		
+		<div class="col-md-4 col-xs-5">
+			<div class="panel panel-default">
+				<div class="panel-heading">Contenu de votre commande</div>	
+				<div class="panel-body">
+						<table class = "table table-striped">
+							<tr th:each="a:${cart}">
+								<td th:text="${a.description}"> </td>
+								<td th:text="${a.price}"> </td>		
+							</tr>						
+							<tr> 
+								<td></td>
+								<td class = "text-right"> Coût total : </td>
+								<td  th:text="${total}"></td>
+							</tr>							
+						</table>	
+						<a class="btn btn-success text-center" th:href="@{/sessionlist}">Précédent</a>
+						<a class="btn btn-danger text-center" th:href="@{/confirm}">Valider commande</a>																				
+				</div>
+			</div>			
+		</div>
+	</div>
+</body>
+
+</html>
